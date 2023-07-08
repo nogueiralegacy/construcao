@@ -16,12 +16,15 @@ class ConectorTest {
     void conexaoBancoValida() {
         Utils utils = new Utils();
 
-        Path pathProperties = utils.getPath("config.properties");
+        // Arquivo com as propriedades de conexão com o banco de dados
+        String fileName = "config.properties";
+
+        Path pathProperties = utils.getPath(fileName);
 
         Properties properties = Utils.getProperties(pathProperties);
         String url = properties.getProperty("db.url");
-        String usuario = properties.getProperty("db.usuario");
-        String senha = properties.getProperty("db.senha");
+        String usuario = properties.getProperty("db.username");
+        String senha = properties.getProperty("db.password");
 
         Conector conector = new Conector(url, usuario, senha);
 

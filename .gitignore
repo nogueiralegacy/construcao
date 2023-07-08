@@ -26,5 +26,9 @@ replay_pid*
 # IntelliJ
 .idea/
 
-#Target
+# Target
 target/
+
+# Arquivo com dados sensíveis
+config.properties
+

@@ -35,7 +35,7 @@ public class Utils {
      * ou null caso o arquivo não for encontrado.
      *
      */
-    public Properties getProperties(Path pathPropertiesFile) {
+    public static Properties getProperties(Path pathPropertiesFile) {
         Properties properties = new Properties();
 
 

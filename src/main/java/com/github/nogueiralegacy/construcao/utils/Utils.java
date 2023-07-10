@@ -2,6 +2,7 @@ package com.github.nogueiralegacy.construcao.utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -9,22 +10,27 @@ import java.util.Properties;
 
 public class Utils {
     /**
-     * Retorna o caminho (Path) para o recurso especificado pelo nome do arquivo.
-     * O recurso é procurado usando o ClassLoader associado à classe atual.
+     * Retorna caminho de um arquivo no diretório resources.
      *
-     * @param fileName o nome do arquivo do recurso a ser localizado.
-     * @return o caminho (Path) para o recurso encontrado.
-     * @throws IllegalArgumentException se o recurso não for encontrado.
+     * @param fileName O nome do arquivo desejado no resources.
+     *
+     * @return Retorna o caminho para o arquivo no diretório resources.
      */
     public Path getPath(String fileName) {
         ClassLoader classLoader = this.getClass().getClassLoader();
         URL resource = classLoader.getResource(fileName);
-        if (resource != null) {
-            return Paths.get(resource.toString());
-        } else {
-            throw new IllegalArgumentException("Recurso não encntrado: " + fileName);
+        URI uri = null;
+
+        try {
+            uri = resource.toURI();
+        } catch (Exception exp) {
+            return null;
         }
+
+        return Paths.get(uri);
     }
+
+
 
     /**
      * Retorna as propriedades armazenadas em um arquivo especificado
@@ -37,7 +43,6 @@ public class Utils {
      */
     public static Properties getProperties(Path pathPropertiesFile) {
         Properties properties = new Properties();
-
 
         try (FileInputStream fileInputStream = new FileInputStream(pathPropertiesFile.toFile())) {
             properties.load(fileInputStream);

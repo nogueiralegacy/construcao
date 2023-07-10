@@ -30,8 +30,6 @@ public class Utils {
         return Paths.get(uri);
     }
 
-
-
     /**
      * Retorna as propriedades armazenadas em um arquivo especificado
      * pelo seu caminho (pathPropertiesFile)
@@ -46,7 +44,7 @@ public class Utils {
 
         try (FileInputStream fileInputStream = new FileInputStream(pathPropertiesFile.toFile())) {
             properties.load(fileInputStream);
-        } catch (IOException ioException) {
+        } catch (Exception exception) {
             return properties;
         }
 

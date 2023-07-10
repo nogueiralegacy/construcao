@@ -14,12 +14,10 @@ class ConectorTest {
 
     @Test
     void conexaoBancoValida() {
-        Utils utils = new Utils();
-
         // Arquivo com as propriedades de conexão com o banco de dados
         String fileName = "config.properties";
 
-        Path pathProperties = utils.getPath(fileName);
+        Path pathProperties = new Utils().getPath(fileName);
 
         Properties properties = Utils.getProperties(pathProperties);
         String url = properties.getProperty("db.url");

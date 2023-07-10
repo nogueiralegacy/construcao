@@ -22,7 +22,7 @@ class UtilsTest {
     @Test
     void arquivoEncontradoNoResources() {
         // O nome de um arquivo que existe
-        String fileName = "config.properties";
+        String fileName = "configTest.properties";
 
         Utils utils = new Utils();
 
@@ -31,7 +31,7 @@ class UtilsTest {
 
     @Test
     void propriedadesCarregadasCorretamente() {
-        String fileName = "config.properties";
+        String fileName = "configTest.properties";
         //Propriedades esperadas
         String urlBanco = "url_do_banco";
         String usarioBanco = "seu_usuario";

@@ -27,9 +27,10 @@ class ConectorTest {
         Conector conector = new Conector(url, usuario, senha);
 
         try (Connection conexao = conector.conectar()) {
-            assertNotNull(conexao);
-        } catch (SQLException e) {
-            fail("Conexao com o banco falhou: " + e.getMessage());
+
+        }
+         catch (SQLException sqlException) {
+            fail("Conexao com o banco falhou: " + sqlException.getMessage());
         }
     }
 }

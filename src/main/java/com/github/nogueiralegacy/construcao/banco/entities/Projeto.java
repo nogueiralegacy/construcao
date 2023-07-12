@@ -25,4 +25,11 @@ public class Projeto {
     private Usuario criador;
 
     protected Projeto() {}
+
+    public Projeto(String nome, String descricao, LocalDateTime dataCriacao, Usuario criador) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.dataCriacao = dataCriacao;
+        this.criador = criador;
+    }
 }

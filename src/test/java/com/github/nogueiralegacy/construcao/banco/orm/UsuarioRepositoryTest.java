@@ -1,8 +1,7 @@
-package com.github.nogueiralegacy.construcao.banco.entities;
+package com.github.nogueiralegacy.construcao.banco.orm;
 
 
-import jakarta.transaction.Transactional;
-import org.junit.jupiter.api.AfterEach;
+import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

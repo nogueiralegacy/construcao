@@ -1,12 +1,12 @@
-package com.github.nogueiralegacy.construcao.banco;
+package com.github.nogueiralegacy.construcao;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BancoDeDadoApplication {
+public class ConstrucaoApplication {
     public static void main(String[] args) {
-        SpringApplication.run(BancoDeDadoApplication.class, args);
+        SpringApplication.run(ConstrucaoApplication.class, args);
     }
 }
 

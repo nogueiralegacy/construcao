@@ -1,5 +1,6 @@
-package com.github.nogueiralegacy.construcao.banco.entities;
+package com.github.nogueiralegacy.construcao.banco.repository;
 
+import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
 /**

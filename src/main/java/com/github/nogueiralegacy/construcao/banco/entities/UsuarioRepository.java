@@ -15,5 +15,13 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
      * @return usuario com o username informado
      */
     Usuario findByUsername(String username);
+
+    /**
+     * Remove o usuario com o username informado
+     *
+     * @param username usuario a ser removido do banco
+     * @return quantidades de linhas afetadas
+     */
+    Long deleteByUsername(String username);
 }
 

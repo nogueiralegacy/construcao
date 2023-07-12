@@ -1,4 +1,4 @@
-package com.github.nogueiralegacy.construcao.banco.entities;
+package com.github.nogueiralegacy.construcao.banco.orm;
 
 import jakarta.persistence.*;
 import lombok.Data;

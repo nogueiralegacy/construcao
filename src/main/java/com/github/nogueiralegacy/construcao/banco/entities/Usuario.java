@@ -5,11 +5,12 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Data
 @Entity
-@Table(name = "usuario")
 public class Usuario {
-    
+
     @Getter(onMethod_ = @Deprecated)
     @Setter(onMethod_ = @Deprecated)
     @Id
@@ -25,6 +26,9 @@ public class Usuario {
     private String email;
     private String avatar;
 
+    @OneToMany(mappedBy = "criador")
+    private Set<Projeto> projetos;
+
     protected Usuario() {}
 
     public Usuario(String username, String password, String nickname, String email, String avatar) {
@@ -35,4 +39,10 @@ public class Usuario {
         this.avatar = avatar;
     }
 
+    public Usuario(String username, String password, String nickname, String email) {
+        this.username = username;
+        this.password = password;
+        this.nickname = nickname;
+        this.email = email;
+    }
 }

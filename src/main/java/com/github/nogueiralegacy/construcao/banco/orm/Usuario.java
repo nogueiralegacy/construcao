@@ -45,4 +45,22 @@ public class Usuario {
         this.nome = nome;
         this.email = email;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Usuario usuario = (Usuario) o;
+
+        if (!nickname.equals(usuario.nickname)) return false;
+        return password.equals(usuario.password);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = nickname.hashCode();
+        result = 31 * result + password.hashCode();
+        return result;
+    }
 }

@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Optional;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
@@ -24,14 +27,18 @@ class UsuarioRepositoryTest {
         usuario.setNickname("naldinho");
         usuario.setEmail("naldo@gmail.com");
         usuario.setPassword("naldo123");
+        usuario.setProjetos(Set.of());
     }
 
     @Test
     void buscandoUsuarioSalvoPeloUsername() {
         usuario = usuarioRepository.save(usuario);
 
-        Usuario usuarioRetornado = usuarioRepository.findByNickname("naldinho");
-        assertEquals(usuario, usuarioRetornado);
+        Optional<Usuario> usuarioRetornado = usuarioRepository.findByNickname("naldinho");
+        if (usuarioRetornado.isEmpty()) {
+            throw new RuntimeException("Usuario não encontrado");
+        }
+        assertEquals(usuario, usuarioRetornado.get());
 
         usuarioRepository.delete(usuario);
     }

@@ -2,7 +2,6 @@ package com.github.nogueiralegacy.construcao.banco.orm;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Set;
@@ -11,7 +10,6 @@ import java.util.Set;
 @Entity
 public class Usuario {
 
-    @Getter(onMethod_ = @Deprecated)
     @Setter(onMethod_ = @Deprecated)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

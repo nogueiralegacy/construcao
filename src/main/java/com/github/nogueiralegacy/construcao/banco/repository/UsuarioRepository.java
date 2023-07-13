@@ -3,6 +3,8 @@ package com.github.nogueiralegacy.construcao.banco.repository;
 import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
+
 /**
  * Interface para declarar, de forma simples, consultas (query)
  * ao banco de dados relacionadas a tabela Usuario.
@@ -15,7 +17,7 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
      * @param nickname username do usuario a ser buscado
      * @return usuario com o username informado
      */
-    Usuario findByNickname(String nickname);
+    Optional<Usuario> findByNickname(String nickname);
 
     /**
      * Remove o usuario com o username informado

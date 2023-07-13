@@ -17,11 +17,11 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true, nullable = false)
-    private String username;
+    private String nickname;
     @Column(nullable = false)
     private String password;
-    @Column(unique = true, nullable = false)
-    private String nickname;
+    @Column(nullable = false)
+    private String nome;
     @Column(unique = true, nullable = false)
     private String email;
     private String avatar;
@@ -31,18 +31,18 @@ public class Usuario {
 
     protected Usuario() {}
 
-    public Usuario(String username, String password, String nickname, String email, String avatar) {
-        this.username = username;
-        this.password = password;
+    public Usuario(String nickname, String password, String nome, String email, String avatar) {
         this.nickname = nickname;
+        this.password = password;
+        this.nome = nome;
         this.email = email;
         this.avatar = avatar;
     }
 
-    public Usuario(String username, String password, String nickname, String email) {
-        this.username = username;
-        this.password = password;
+    public Usuario(String nickname, String password, String nome, String email) {
         this.nickname = nickname;
+        this.password = password;
+        this.nome = nome;
         this.email = email;
     }
 }

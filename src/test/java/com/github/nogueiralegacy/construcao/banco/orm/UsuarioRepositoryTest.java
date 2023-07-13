@@ -20,9 +20,9 @@ class UsuarioRepositoryTest {
     void setUp() {
         usuario = new Usuario();
 
-        usuario.setUsername("Naldo");
+        usuario.setNome("Naldo");
+        usuario.setNickname("naldinho");
         usuario.setEmail("naldo@gmail.com");
-        usuario.setNickname("Naldinho");
         usuario.setPassword("naldo123");
     }
 
@@ -30,7 +30,7 @@ class UsuarioRepositoryTest {
     void buscandoUsuarioSalvoPeloUsername() {
         usuario = usuarioRepository.save(usuario);
 
-        Usuario usuarioRetornado = usuarioRepository.findByUsername("Naldo");
+        Usuario usuarioRetornado = usuarioRepository.findByNickname("naldinho");
         assertEquals(usuario, usuarioRetornado);
 
         usuarioRepository.delete(usuario);

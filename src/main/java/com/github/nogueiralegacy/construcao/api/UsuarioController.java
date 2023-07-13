@@ -6,15 +6,28 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping(path ="/usuario")
 public class UsuarioController {
-    UsuarioRepository usuarioRepository;
+   private final UsuarioRepository usuarioRepository;
 
     public UsuarioController(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+    }
+
+    @GetMapping
+    public List<Usuario> getUsuarios() {
+        Iterable<Usuario> usuarios = usuarioRepository.findAll();
+        List<Usuario> usuarioList = new ArrayList<>();
+
+        for (Usuario usuario : usuarios) {
+            usuarioList.add(usuario);
+        }
+
+        return usuarioList;
     }
 }

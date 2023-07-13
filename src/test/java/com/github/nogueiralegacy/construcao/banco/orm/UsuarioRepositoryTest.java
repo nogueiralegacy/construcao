@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @SpringBootTest
 class UsuarioRepositoryTest {
@@ -35,9 +36,8 @@ class UsuarioRepositoryTest {
         usuario = usuarioRepository.save(usuario);
 
         Optional<Usuario> usuarioRetornado = usuarioRepository.findByNickname("naldinho");
-        if (usuarioRetornado.isEmpty()) {
-            throw new RuntimeException("Usuario não encontrado");
-        }
+
+        assertFalse(usuarioRetornado.isEmpty());
         assertEquals(usuario, usuarioRetornado.get());
 
         usuarioRepository.delete(usuario);

@@ -21,6 +21,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>17</java.version>
+    <spring.port>8081</spring.port>
   </properties>
 
 
@@ -46,6 +47,11 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <jvmArguments>
+            -Dserver.port=${spring.port}
+          </jvmArguments>
+        </configuration>
       </plugin>
 
     </plugins>

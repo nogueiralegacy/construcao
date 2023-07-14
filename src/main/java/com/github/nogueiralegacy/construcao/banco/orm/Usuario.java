@@ -24,9 +24,6 @@ public class Usuario {
     private String email;
     private String avatar;
 
-    @OneToMany(mappedBy = "criador", fetch = FetchType.EAGER)
-    private Set<Projeto> projetos;
-
     protected Usuario() {}
 
     public Usuario(String nickname, String password, String nome, String email, String avatar) {

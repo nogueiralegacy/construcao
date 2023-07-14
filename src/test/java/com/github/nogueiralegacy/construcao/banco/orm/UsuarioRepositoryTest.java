@@ -28,7 +28,6 @@ class UsuarioRepositoryTest {
         usuario.setNickname("testador");
         usuario.setEmail("test@gmail.com");
         usuario.setPassword("test123");
-        usuario.setProjetos(Set.of());
 
         usuarioRepository.save(usuario);
     }

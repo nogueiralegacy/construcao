@@ -16,5 +16,4 @@ public final class BCryptHasher {
     public boolean matches(String password, String hash) {
         return encoder.matches(password, hash);
     }
-
 }

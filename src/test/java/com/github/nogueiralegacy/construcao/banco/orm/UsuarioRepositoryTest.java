@@ -2,6 +2,7 @@ package com.github.nogueiralegacy.construcao.banco.orm;
 
 
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,18 +29,22 @@ class UsuarioRepositoryTest {
         usuario.setEmail("test@gmail.com");
         usuario.setPassword("test123");
         usuario.setProjetos(Set.of());
+
+        usuarioRepository.save(usuario);
+    }
+
+    @AfterEach
+    void tearDown() {
+        usuarioRepository.delete(usuario);
+        usuario = null;
     }
 
     @Test
     void buscandoUsuarioSalvoPeloUsername() {
-        usuario = usuarioRepository.save(usuario);
-
         Optional<Usuario> usuarioRetornado = usuarioRepository.findByNickname("testador");
 
         assertFalse(usuarioRetornado.isEmpty());
         assertEquals(usuario, usuarioRetornado.get());
-
-        usuarioRepository.delete(usuario);
     }
 
 }

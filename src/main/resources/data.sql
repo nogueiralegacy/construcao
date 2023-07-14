@@ -27,3 +27,6 @@ VALUES ('sabrinasato', 'senha678', 'Sabrina Sato', 'sabrinasato@example.com', 's
 
 INSERT INTO usuario (nickname, password, nome, email, avatar)
 VALUES ('cauareymond', 'senha901', 'Cauã Reymond', 'caua@example.com', 'caua_avatar.jpg');
+
+INSERT INTO projeto (nome, descricao, data_criacao, id_usuario)
+VALUES ('Construção', 'Projeto da disciplina de Construção de software', TO_TIMESTAMP('2023-07-14 12:34:56', 'YYYY-MM-DD HH24:MI:SS'), 1);

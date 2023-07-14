@@ -10,8 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class UsuarioRepositoryTest {
@@ -24,10 +23,10 @@ class UsuarioRepositoryTest {
     void setUp() {
         usuario = new Usuario();
 
-        usuario.setNome("Naldo");
-        usuario.setNickname("naldinho");
-        usuario.setEmail("naldo@gmail.com");
-        usuario.setPassword("naldo123");
+        usuario.setNome("Testando");
+        usuario.setNickname("testador");
+        usuario.setEmail("test@gmail.com");
+        usuario.setPassword("test123");
         usuario.setProjetos(Set.of());
     }
 
@@ -35,7 +34,7 @@ class UsuarioRepositoryTest {
     void buscandoUsuarioSalvoPeloUsername() {
         usuario = usuarioRepository.save(usuario);
 
-        Optional<Usuario> usuarioRetornado = usuarioRepository.findByNickname("naldinho");
+        Optional<Usuario> usuarioRetornado = usuarioRepository.findByNickname("testador");
 
         assertFalse(usuarioRetornado.isEmpty());
         assertEquals(usuario, usuarioRetornado.get());

@@ -22,7 +22,8 @@ public class Usuario {
     private String email;
     private String avatar;
     @Column(nullable = false)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private UsuarioRole role;
 
     protected Usuario() {}
 

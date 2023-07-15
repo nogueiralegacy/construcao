@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Data
 @Entity
 public class Usuario {
@@ -23,23 +21,10 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String email;
     private String avatar;
+    @Column(nullable = false)
+    private String role;
 
     protected Usuario() {}
-
-    public Usuario(String nickname, String password, String nome, String email, String avatar) {
-        this.nickname = nickname;
-        this.password = password;
-        this.nome = nome;
-        this.email = email;
-        this.avatar = avatar;
-    }
-
-    public Usuario(String nickname, String password, String nome, String email) {
-        this.nickname = nickname;
-        this.password = password;
-        this.nome = nome;
-        this.email = email;
-    }
 
     @Override
     public boolean equals(Object o) {

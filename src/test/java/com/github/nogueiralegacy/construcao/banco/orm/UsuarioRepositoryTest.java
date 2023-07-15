@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +27,7 @@ class UsuarioRepositoryTest {
         usuario.setNickname("testador");
         usuario.setEmail("test@gmail.com");
         usuario.setPassword("test123");
+        usuario.setRole("userTest");
 
         usuarioRepository.save(usuario);
     }

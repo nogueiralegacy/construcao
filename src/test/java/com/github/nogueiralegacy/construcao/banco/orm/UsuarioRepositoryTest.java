@@ -27,7 +27,7 @@ class UsuarioRepositoryTest {
         usuario.setNickname("testador");
         usuario.setEmail("test@gmail.com");
         usuario.setPassword("test123");
-        usuario.setRole("userTest");
+        usuario.setRole(UsuarioRole.USER);
 
         usuarioRepository.save(usuario);
     }

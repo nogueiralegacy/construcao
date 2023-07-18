@@ -1,6 +1,5 @@
 package com.github.nogueiralegacy.construcao.api.security;
 
-import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
 import com.github.nogueiralegacy.construcao.banco.orm.UsuarioRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -14,16 +13,13 @@ import java.util.List;
 public class Login implements UserDetails {
     private String username;
     private String password;
-
     private UsuarioRole role;
 
     protected Login() {}
 
     public Login(String username, String password, UsuarioRole role) {
-        BCryptHasher hasher = new BCryptHasher();
-
         this.username = username;
-        this.password = hasher.encode(password);
+        this.password = password;
         this.role = role;
     }
 

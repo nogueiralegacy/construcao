@@ -25,7 +25,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
 
-    protected Usuario() {}
+    public Usuario() {}
 
     @Override
     public boolean equals(Object o) {

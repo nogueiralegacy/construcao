@@ -4,7 +4,7 @@ import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginDTO;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginResponseDTO;
-import com.github.nogueiralegacy.construcao.utils.dto.RegisterDTO;
+import com.github.nogueiralegacy.construcao.utils.dto.RegisterUsuarioDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,13 +37,13 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterDTO registerDTO) {
-        if (usuarioRepository.findByNickname(registerDTO.nickname()).isPresent()) {
+    public ResponseEntity register(@RequestBody RegisterUsuarioDTO registerUsuarioDTO) {
+        if (usuarioRepository.findByNickname(registerUsuarioDTO.nickname()).isPresent()) {
             return ResponseEntity.badRequest().build();
         }
         else {
-            String passwordHash = new BCryptHasher().encode(registerDTO.password());
-            usuarioRepository.save(registerDTO.toUsuario(passwordHash));
+            String passwordHash = new BCryptHasher().encode(registerUsuarioDTO.password());
+            usuarioRepository.save(registerUsuarioDTO.toUsuario(passwordHash));
 
             return ResponseEntity.ok().build();
         }

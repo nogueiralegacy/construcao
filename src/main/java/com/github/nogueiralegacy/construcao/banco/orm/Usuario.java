@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Data
 @Entity
 public class Usuario {
@@ -24,6 +27,9 @@ public class Usuario {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
+
+    @ManyToMany(mappedBy = "participantes")
+    private Set<Projeto> projetos = new HashSet<>();
 
     public Usuario() {}
 

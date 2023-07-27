@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -72,9 +73,7 @@ class UtilsTest {
     @Test
     void convertendoDataInvalida() {
         String dataString = "2021-10-10 10:10:10:10";
-
-        LocalDateTime dataConvertida = Utils.toLocalDateTime(dataString);
-
-        assertThrows(IllegalArgumentException.class, () -> Utils.toLocalDateTime(dataString));
+        
+        assertThrows(DateTimeParseException.class, () -> Utils.toLocalDateTime(dataString));
     }
 }

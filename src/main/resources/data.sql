@@ -30,4 +30,4 @@ VALUES ('daniboy', '$2a$10$k5Nq87K9JqU9Kc8j7Xq66eSvfS.1hoeqP9pTE.ydb6X2R0RMiss5G
 
 
 INSERT INTO projeto (nome, descricao, data_criacao, id_usuario)
-VALUES ('Construção', 'Projeto da disciplina de Construção de software', TO_TIMESTAMP('2023-07-14 12:34:56', 'YYYY-MM-DD HH24:MI:SS'), 1);
+VALUES ('Projeto Software', 'projeto para disciplina e aprendizado em desenvolvimento de software', TO_TIMESTAMP('2023-07-14 12:34:56', 'YYYY-MM-DD HH24:MI:SS'), 1);

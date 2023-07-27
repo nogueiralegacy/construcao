@@ -24,14 +24,14 @@ public class ProjetoController {
     }
 
     @PostMapping
-    public ResponseEntity setProjeto(@RequestBody ProjetoDTO projetoDTO) {
+    public ResponseEntity<String> setProjeto(@RequestBody ProjetoDTO projetoDTO) {
        try {
            projetoService.saveProjeto(projetoDTO);
        }
        catch (Exception e) {
-           return ResponseEntity.badRequest().body(e.getMessage());
+           return ResponseEntity.badRequest().body("Erro ao criar projeto: " + e.getMessage());
        }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Projeto criado com sucesso!");
     }
 }

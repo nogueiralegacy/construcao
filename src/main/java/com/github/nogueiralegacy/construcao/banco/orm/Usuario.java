@@ -1,5 +1,6 @@
 package com.github.nogueiralegacy.construcao.banco.orm;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -28,6 +29,7 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "participantes")
     private Set<Projeto> projetos = new HashSet<>();
 

@@ -1,5 +1,6 @@
 package com.github.nogueiralegacy.construcao.banco.orm;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -24,6 +25,7 @@ public class Projeto {
     @JoinColumn(nullable = false, name = "id_usuario ")
     private Usuario criador;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "projeto_participante",

@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Properties;
 
 public class Utils {
@@ -62,7 +63,7 @@ public class Utils {
      * @throws IllegalArgumentException caso a dataString não esteja no
      * formato adequado.
      */
-    public static LocalDateTime toLocalDateTime(String dataString) throws IllegalArgumentException {
+    public static LocalDateTime toLocalDateTime(String dataString) throws DateTimeParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return LocalDateTime.parse(dataString, formatter);
     }

@@ -3,6 +3,7 @@ package com.github.nogueiralegacy.construcao.utils;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -56,5 +57,24 @@ class UtilsTest {
         Properties properties = Utils.getProperties(pathProperties);
 
         assertTrue(properties.isEmpty());
+    }
+
+    @Test
+    void convertendoDataValida() {
+        LocalDateTime dataEsperada = LocalDateTime.of(2021, 10, 10, 10, 10, 10);
+
+        String dataString = "2021-10-10 10:10:10";
+        LocalDateTime dataConvertida = Utils.toLocalDateTime(dataString);
+
+        assertEquals(dataEsperada, dataConvertida);
+    }
+
+    @Test
+    void convertendoDataInvalida() {
+        String dataString = "2021-10-10 10:10:10:10";
+
+        LocalDateTime dataConvertida = Utils.toLocalDateTime(dataString);
+
+        assertThrows(IllegalArgumentException.class, () -> Utils.toLocalDateTime(dataString));
     }
 }

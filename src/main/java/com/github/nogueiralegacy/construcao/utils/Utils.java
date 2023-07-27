@@ -6,6 +6,8 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 
 public class Utils {
@@ -49,5 +51,19 @@ public class Utils {
         }
 
         return properties;
+    }
+
+    /**
+     * Converte data em formato de String para um LocalDateTime.
+     *
+     * @param dataString a data em formato de String.
+     * @return um LocalDateTime com a data convertida.
+     *
+     * @throws IllegalArgumentException caso a dataString não esteja no
+     * formato adequado.
+     */
+    public static LocalDateTime toLocalDateTime(String dataString) throws IllegalArgumentException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(dataString, formatter);
     }
 }

@@ -34,12 +34,5 @@ public class Projeto {
     )
     private Set<Usuario> participantes = new HashSet<>();
 
-    protected Projeto() {}
-
-    public Projeto(String nome, String descricao, LocalDateTime dataCriacao, Usuario criador) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.dataCriacao = dataCriacao;
-        this.criador = criador;
-    }
+    public Projeto() {}
 }

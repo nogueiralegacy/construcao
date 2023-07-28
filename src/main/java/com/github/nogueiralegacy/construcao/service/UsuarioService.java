@@ -17,15 +17,23 @@ public class UsuarioService {
     }
     
     public Usuario findByNickname(String nickname) {
+        if (nickname == null) {
+            throw new IllegalArgumentException("O parametro 'nickname' não pode ser nulo");
+        }
+
         Optional<Usuario> usuario = usuarioRepository.findByNickname(nickname);
 
         if (usuario.isPresent()) {
             return usuario.get();
         }
-        throw new IllegalArgumentException("Usuario nao encotrado " + nickname);
+        throw new IllegalArgumentException("Usuario não encotrado " + nickname);
     }
 
     public Set<Usuario> findByNicknames(String[] nicknames) throws IllegalArgumentException {
+        if (nicknames == null) {
+            return new HashSet<>();
+        }
+
         Set<Usuario> usuarios = new HashSet<>();
         for (String nickname : nicknames) {
             usuarios.add(this.findByNickname(nickname));

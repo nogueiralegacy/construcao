@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.banco.repository;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

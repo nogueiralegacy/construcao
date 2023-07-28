@@ -1,7 +1,7 @@
 package com.github.nogueiralegacy.construcao.utils.dto;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
-import com.github.nogueiralegacy.construcao.banco.orm.UsuarioRole;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
+import com.github.nogueiralegacy.construcao.domain.UsuarioRole;
 
 public record RegisterUsuarioDTO(String nickname, String password, String nome, String email, String avatar, UsuarioRole role) {
     public Usuario toUsuario(String passwordHash) {

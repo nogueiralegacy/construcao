@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.service;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.utils.dto.ProjetoDTO;
 
 import org.springframework.boot.test.context.SpringBootTest;

@@ -28,7 +28,7 @@ public class ProjetoController {
        try {
            projetoService.saveProjeto(projetoDTO);
        }
-       catch (Exception e) {
+       catch (IllegalArgumentException e) {
            return ResponseEntity.badRequest().body("Erro ao criar projeto: " + e.getMessage());
        }
 

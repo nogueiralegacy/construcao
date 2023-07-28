@@ -10,6 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -54,5 +57,37 @@ class UsuarioServiceTest {
         String nickname = "NAO EXISTE";
 
         assertThrows(IllegalArgumentException.class, () -> usuarioService.findByNickname(nickname));
+    }
+
+    @Test
+    void findByNicknameNull() {
+        String nickname = null;
+
+        assertThrows(IllegalArgumentException.class, () -> usuarioService.findByNickname(nickname));
+    }
+
+    @Test
+    void  findByNicknamesValido() {
+        String[] nicknames = {"testador"};
+
+        Usuario usuarioRetornado = usuarioService.findByNicknames(nicknames).iterator().next();
+
+        assertEquals(usuario, usuarioRetornado);
+    }
+
+    @Test
+    void findByNicknamesInvalido() {
+        String[] nicknames = {"NAO EXISTE"};
+
+        assertThrows(IllegalArgumentException.class, () -> usuarioService.findByNicknames(nicknames));
+    }
+
+    @Test
+    void findByNicknamesNull() {
+        String[] nicknames = null;
+
+        Set<Usuario> resultadoEsperado = new HashSet<>();
+
+        assertEquals(resultadoEsperado, usuarioService.findByNicknames(nicknames));
     }
 }

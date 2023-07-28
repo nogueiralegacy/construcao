@@ -1,4 +1,4 @@
-package com.github.nogueiralegacy.construcao.banco.orm;
+package com.github.nogueiralegacy.construcao.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;

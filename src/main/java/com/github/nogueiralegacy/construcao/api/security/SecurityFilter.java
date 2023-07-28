@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.api.security;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginDTO;
 import jakarta.servlet.FilterChain;

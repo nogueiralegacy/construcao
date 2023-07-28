@@ -1,7 +1,7 @@
 package com.github.nogueiralegacy.construcao.utils.dto;
 
 import com.github.nogueiralegacy.construcao.api.security.Login;
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
 
 public record LoginDTO (String username, String password) {
 

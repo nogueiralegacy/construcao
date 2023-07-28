@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.service;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Projeto;
+import com.github.nogueiralegacy.construcao.domain.Projeto;
 import com.github.nogueiralegacy.construcao.banco.repository.ProjetoRepository;
 import com.github.nogueiralegacy.construcao.utils.Utils;
 import com.github.nogueiralegacy.construcao.utils.dto.ProjetoDTO;

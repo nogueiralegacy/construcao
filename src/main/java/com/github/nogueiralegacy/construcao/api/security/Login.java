@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.api.security;
 
-import com.github.nogueiralegacy.construcao.banco.orm.UsuarioRole;
+import com.github.nogueiralegacy.construcao.domain.UsuarioRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package com.github.nogueiralegacy.construcao.service;
 
-import com.github.nogueiralegacy.construcao.banco.orm.Usuario;
+import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginDTO;
 import org.springframework.security.core.userdetails.UserDetails;

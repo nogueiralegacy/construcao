@@ -1,4 +1,4 @@
-package com.github.nogueiralegacy.construcao.banco.orm;
+package com.github.nogueiralegacy.construcao.domain;
 
 public enum UsuarioRole {
     ADMIN("admin"),

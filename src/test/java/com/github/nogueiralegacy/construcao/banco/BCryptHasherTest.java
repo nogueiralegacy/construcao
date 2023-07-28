@@ -1,6 +1,4 @@
-package com.github.nogueiralegacy.construcao;
-
-import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
+package com.github.nogueiralegacy.construcao.banco;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;

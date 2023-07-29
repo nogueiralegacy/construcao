@@ -33,25 +33,7 @@ public class Usuario {
     @ManyToMany(mappedBy = "participantes")
     private Set<Projeto> projetos = new HashSet<>();
 
-    protected Usuario() {}
-
-    public Usuario(String nickname, String password, String nome, String email, UsuarioRole role) {
-        this.nickname = nickname;
-        this.password = password;
-        this.nome = nome;
-        this.email = email;
-        this.role = role;
-    }
-
-    public void addProjeto(Projeto projeto) {
-        projetos.add(projeto);
-        projeto.getParticipantes().add(this);
-    }
-
-    public void removeProjeto(Projeto projeto) {
-        projetos.remove(projeto);
-        projeto.getParticipantes().remove(this);
-    }
+    public Usuario() {}
 
     @Override
     public boolean equals(Object o) {

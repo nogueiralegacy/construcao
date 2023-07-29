@@ -1,7 +1,6 @@
-package com.github.nogueiralegacy.construcao.banco.orm;
+package com.github.nogueiralegacy.construcao.banco.repository;
 
 
-import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.domain.UsuarioRole;
 import org.junit.jupiter.api.AfterEach;

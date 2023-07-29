@@ -34,20 +34,5 @@ public class Projeto {
     )
     private Set<Usuario> participantes = new HashSet<>();
 
-    protected Projeto() {}
-    public Projeto(String nome, Usuario criador) {
-        this.nome = nome;
-        this.dataCriacao = LocalDateTime.now();
-        this.criador = criador;
-    }
-
-    public void addParticipante(Usuario usuario) {
-        participantes.add(usuario);
-        usuario.getProjetos().add(this);
-    }
-
-    public void removeParticipante(Usuario usuario) {
-        participantes.remove(usuario);
-        usuario.getProjetos().remove(this);
-    }
+    public Projeto() {}
 }

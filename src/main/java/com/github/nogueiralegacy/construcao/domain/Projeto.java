@@ -1,6 +1,5 @@
 package com.github.nogueiralegacy.construcao.domain;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -34,4 +33,12 @@ public class Projeto {
     private Set<Usuario> participantes = new HashSet<>();
 
     public Projeto() {}
+
+    public void addParticipante(Usuario usuario) {
+        participantes.add(usuario);
+    }
+
+    public void removeParticipante(Usuario usuario) {
+        participantes.remove(usuario);
+    }
 }

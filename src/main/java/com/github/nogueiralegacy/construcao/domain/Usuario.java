@@ -29,10 +29,6 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
 
-    @JsonBackReference
-    @ManyToMany(mappedBy = "participantes")
-    private Set<Projeto> projetos = new HashSet<>();
-
     public Usuario() {}
 
     @Override

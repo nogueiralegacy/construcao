@@ -22,10 +22,9 @@ public class Projeto {
     private LocalDateTime dataCriacao;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "id_usuario ")
+    @JoinColumn(nullable = false, name = "id_criador ")
     private Usuario criador;
 
-    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "projeto_participante",

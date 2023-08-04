@@ -1,12 +1,8 @@
 package com.github.nogueiralegacy.construcao.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @Entity

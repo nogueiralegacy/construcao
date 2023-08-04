@@ -1,5 +1,6 @@
 package com.github.nogueiralegacy.construcao.service;
 
+import com.github.nogueiralegacy.construcao.AuxiliarTest;
 import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.domain.UsuarioRole;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
@@ -18,6 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class UsuarioServiceTest {
     @Autowired
+    private AuxiliarTest auxiliarTest;
+    @Autowired
     private UsuarioService usuarioService;
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -26,20 +29,12 @@ class UsuarioServiceTest {
 
     @BeforeEach
     void setUp() {
-        usuario = new Usuario();
-
-        usuario.setNome("Testando");
-        usuario.setNickname("testador");
-        usuario.setEmail("test@gmail.com");
-        usuario.setPassword("test123");
-        usuario.setRole(UsuarioRole.USER);
-
-        usuarioRepository.save(usuario);
+        usuario = auxiliarTest.setUpUsuario();
     }
 
     @AfterEach
     void tearDown() {
-        usuarioRepository.delete(usuario);
+        auxiliarTest.tearDownUsuario(usuario);
         usuario = null;
     }
 

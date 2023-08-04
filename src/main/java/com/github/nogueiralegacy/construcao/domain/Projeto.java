@@ -3,6 +3,8 @@ package com.github.nogueiralegacy.construcao.domain;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -30,7 +32,13 @@ public class Projeto {
             joinColumns = @JoinColumn(name = "id_projeto"),
             inverseJoinColumns = @JoinColumn(name = "id_usuario")
     )
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Usuario> participantes = new HashSet<>();
+
+    @OneToMany
+    @JoinColumn(name = "id_projeto")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Set<Etapa> etapas = new HashSet<>();
 
     public Projeto() {}
 
@@ -40,5 +48,13 @@ public class Projeto {
 
     public void removeParticipante(Usuario usuario) {
         participantes.remove(usuario);
+    }
+
+    public void addEtapa(Etapa etapa) {
+        etapas.add(etapa);
+    }
+
+    public void removeEtapa(Etapa etapa) {
+        etapas.remove(etapa);
     }
 }

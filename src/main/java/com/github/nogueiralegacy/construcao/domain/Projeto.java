@@ -23,7 +23,7 @@ public class Projeto {
     private LocalDateTime dataCriacao;
 
     @ManyToOne
-    @JoinColumn(nullable = false, name = "id_criador ")
+    @JoinColumn(nullable = false, name = "id_criador")
     private Usuario criador;
 
     @ManyToMany

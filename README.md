@@ -9,4 +9,3 @@ Inspriração [Trello](trello.com)
 - Java
 - PosgreSQL
 - Spring: Data, Web e Security
-- API REST

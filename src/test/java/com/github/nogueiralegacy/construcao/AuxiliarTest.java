@@ -49,14 +49,16 @@ public class AuxiliarTest {
     }
 
     public Projeto setUpProjeto() {
+        Usuario usuario = setUpUsuario();
+
         String projetoNome = "Projeto Teste";
-        Usuario projetoCriador = setUpUsuario();
+        Usuario projetoCriador = usuario;
         Projeto projeto = new Projeto(projetoNome, projetoCriador);
 
 
         projeto.setDescricao("Projeto para testes");
         projeto.setDataCriacao(LocalDateTime.now());
-        projeto.addParticipante(setUpUsuario());
+        projeto.addParticipante(usuario);
         projeto.addEtapa(setUpEtapa());
 
         return projetoRepository.save(projeto);
@@ -64,5 +66,6 @@ public class AuxiliarTest {
 
     public void tearDownProjeto(Projeto projeto) {
         projetoRepository.delete(projeto);
+        usuarioRepository.delete(projeto.getCriador());
     }
 }

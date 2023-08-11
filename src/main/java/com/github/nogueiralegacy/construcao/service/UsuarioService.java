@@ -47,6 +47,14 @@ public class UsuarioService {
         if (!isUsuarioValido(usuarioDTO)) {
             throw new IllegalArgumentException("Formato de usuario inválido, os campos 'nickname', 'password', 'nome', 'email' e 'role' são obrigatórios");
         }
+        if (usuarioExistsByNickname(usuarioDTO.nickname())) {
+            throw new IllegalArgumentException("Nickname já cadastrado");
+        }
+
+        if (usuarioExistsByEmail(usuarioDTO.email())) {
+            throw new IllegalArgumentException("Email já cadastrado");
+        }
+
         String passwordHash = new BCryptHasher().encode(usuarioDTO.password());
 
         Usuario usuario = new Usuario(usuarioDTO.nickname(), passwordHash, usuarioDTO.nome(), usuarioDTO.email(), usuarioDTO.role());
@@ -58,10 +66,17 @@ public class UsuarioService {
         return usuarioDTO != null && usuarioDTO.nickname() != null && usuarioDTO.password() != null && usuarioDTO.nome() != null && usuarioDTO.email() != null && usuarioDTO.role() != null;
     }
 
-    public boolean usuarioExists(String nickname) {
+    public boolean usuarioExistsByNickname(String nickname) {
         if (nickname == null) {
             throw new IllegalArgumentException("O parametro 'nickname' não pode ser nulo");
         }
         return usuarioRepository.existsByNickname(nickname);
+    }
+
+    public boolean usuarioExistsByEmail(String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("O parametro 'email' não pode ser nulo");
+        }
+        return usuarioRepository.existsByEmail(email);
     }
 }

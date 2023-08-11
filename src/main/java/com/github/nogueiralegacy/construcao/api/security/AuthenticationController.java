@@ -1,7 +1,5 @@
 package com.github.nogueiralegacy.construcao.api.security;
 
-import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
-import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.service.UsuarioService;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginDTO;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginResponseDTO;
@@ -40,13 +38,9 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterUsuarioDTO registerUsuarioDTO) {
         try{
-            if (!usuarioService.usuarioExists(registerUsuarioDTO.nickname())) {
-                usuarioService.saveUsuario(registerUsuarioDTO);
+            usuarioService.saveUsuario(registerUsuarioDTO);
+            return ResponseEntity.ok("Usuário registrado com sucesso!");
 
-                return ResponseEntity.ok("Usuário registrado com sucesso!");
-                }
-
-            return ResponseEntity.badRequest().body("Usuário já cadastrado");
         } catch(IllegalArgumentException e) {
             return ResponseEntity.badRequest().body("Erro ao criar usuário: " + e.getMessage());
         }

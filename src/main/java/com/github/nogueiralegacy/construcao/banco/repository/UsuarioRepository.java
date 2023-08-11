@@ -33,5 +33,12 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
      * @return true se existir um usuario com o username informado ou false caso contrario
      */
     boolean existsByNickname(String nickname);
+
+    /**
+     * Verifica se existe um usuario com o email informado
+     * @param email email do usuario a ser verificado
+     * @return true se existir um usuario com o email informado ou false caso contrario
+     */
+    boolean existsByEmail(String email);
 }
 

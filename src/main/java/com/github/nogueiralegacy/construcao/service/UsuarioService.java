@@ -1,7 +1,9 @@
 package com.github.nogueiralegacy.construcao.service;
 
+import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
 import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
+import com.github.nogueiralegacy.construcao.utils.dto.RegisterUsuarioDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -39,5 +41,27 @@ public class UsuarioService {
             usuarios.add(this.findByNickname(nickname));
         }
         return usuarios;
+    }
+
+    public void saveUsuario(RegisterUsuarioDTO usuarioDTO) throws IllegalArgumentException {
+        if (!isUsuarioValido(usuarioDTO)) {
+            throw new IllegalArgumentException("Formato de usuario inválido, os campos 'nickname', 'password', 'nome', 'email' e 'role' são obrigatórios");
+        }
+        String passwordHash = new BCryptHasher().encode(usuarioDTO.password());
+
+        Usuario usuario = new Usuario(usuarioDTO.nickname(), passwordHash, usuarioDTO.nome(), usuarioDTO.email(), usuarioDTO.role());
+
+        usuarioRepository.save(usuario);
+    }
+
+    private boolean isUsuarioValido(RegisterUsuarioDTO usuarioDTO) {
+        return usuarioDTO != null && usuarioDTO.nickname() != null && usuarioDTO.password() != null && usuarioDTO.nome() != null && usuarioDTO.email() != null && usuarioDTO.role() != null;
+    }
+
+    public boolean usuarioExists(String nickname) {
+        if (nickname == null) {
+            throw new IllegalArgumentException("O parametro 'nickname' não pode ser nulo");
+        }
+        return usuarioRepository.existsByNickname(nickname);
     }
 }

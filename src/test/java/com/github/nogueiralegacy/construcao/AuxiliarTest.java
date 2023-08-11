@@ -47,12 +47,13 @@ public class AuxiliarTest {
     }
 
     public Projeto setUpProjeto() {
-        Projeto projeto = new Projeto();
+        String projetoNome = "Projeto Teste";
+        Usuario projetoCriador = setUpUsuario();
+        Projeto projeto = new Projeto(projetoNome, projetoCriador);
 
-        projeto.setNome("Projeto Teste");
+
         projeto.setDescricao("Projeto para testes");
         projeto.setDataCriacao(LocalDateTime.now());
-        projeto.setCriador(setUpUsuario());
         projeto.addParticipante(setUpUsuario());
         projeto.addEtapa(setUpEtapa());
 

@@ -40,7 +40,12 @@ public class Projeto {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Etapa> etapas = new HashSet<>();
 
-    public Projeto() {}
+    protected Projeto() {}
+
+    public Projeto(String nome, Usuario criador) {
+        this.nome = nome;
+        this.criador = criador;
+    }
 
     public void addParticipante(Usuario usuario) {
         participantes.add(usuario);

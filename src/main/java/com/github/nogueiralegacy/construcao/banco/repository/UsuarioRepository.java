@@ -26,5 +26,12 @@ public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
      * @return quantidades de linhas afetadas
      */
     Long deleteByNickname(String nickname);
+
+    /**
+     * Verifica se existe um usuario com o username informado
+     * @param nickname username do usuario a ser verificado
+     * @return true se existir um usuario com o username informado ou false caso contrario
+     */
+    boolean existsByNickname(String nickname);
 }
 

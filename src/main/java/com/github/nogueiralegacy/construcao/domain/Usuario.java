@@ -7,7 +7,6 @@ import lombok.Setter;
 @Data
 @Entity
 public class Usuario {
-
     @Setter(onMethod_ = @Deprecated)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +24,15 @@ public class Usuario {
     @Enumerated(EnumType.STRING)
     private UsuarioRole role;
 
-    public Usuario() {}
+    protected Usuario() {}
+
+    public Usuario(String nickname, String password, String nome, String email, UsuarioRole role) {
+        this.nickname = nickname;
+        this.password = password;
+        this.nome = nome;
+        this.email = email;
+        this.role = role;
+    }
 
     @Override
     public boolean equals(Object o) {

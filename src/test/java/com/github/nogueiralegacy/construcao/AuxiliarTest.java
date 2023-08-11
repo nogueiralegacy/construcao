@@ -22,13 +22,15 @@ public class AuxiliarTest {
     private EtapaRepository etapaRepository;
 
     public Usuario setUpUsuario() {
-        Usuario usuario = new Usuario();
 
-        usuario.setNickname("testador");
-        usuario.setPassword("test123");
-        usuario.setNome("Testando");
-        usuario.setEmail("test@gmail.com");
-        usuario.setRole(UsuarioRole.USER);
+        String nickname = ("testador");
+        String password = ("test123");
+        String nome = ("Testando");
+        String email = ("test@gmail.com");
+        UsuarioRole role = (UsuarioRole.USER);
+
+        Usuario usuario = new Usuario(nickname, password, nome, email, role);
+
 
         return usuarioRepository.save(usuario);
     }

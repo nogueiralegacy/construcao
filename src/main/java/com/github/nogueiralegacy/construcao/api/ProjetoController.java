@@ -10,17 +10,15 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/projeto")
 public class ProjetoController {
-    private final ProjetoRepository projetoRepository;
     private final ProjetoService projetoService;
 
-    public ProjetoController(ProjetoRepository projetoRepository, ProjetoService projetoService) {
-        this.projetoRepository = projetoRepository;
+    public ProjetoController( ProjetoService projetoService) {
         this.projetoService = projetoService;
     }
 
     @GetMapping
     public Iterable<Projeto> getProjetos() {
-        return projetoRepository.findAll();
+        return projetoService.findAll();
     }
 
     @PostMapping

@@ -17,7 +17,7 @@ jobs:
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       ARGS: "-tgoDzvO --delete"
-      SOURCE: "/target/construcao-1.0.jar"
+      SOURCE: "./target/construcao-1.0.jar"
       REMOTE_HOST: "157.230.84.81"
       REMOTE_USER: "root"
       TARGET: "/aplicacao"

@@ -1,7 +1,7 @@
 #!/bin/bash
-
+export SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
 # Criação de um arquivo temporário para armazenar a chave privada
-echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+echo $SSH_PRIVATE_KEY > key.pem
 chmod 400 key.pem
 
 # Início da conexão SSH e execução do comando para iniciar o JAR

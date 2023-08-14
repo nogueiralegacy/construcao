@@ -22,6 +22,13 @@ jobs:
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      ARGS: "-rlgoDzvc --delete"
+      SOURCE: "target"
+      REMOTE_HOST: "157.230.84.81"
+      REMOTE_USER: "root"
+      TARGET: "/root/aplicacao"
+
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
@@ -35,26 +42,12 @@ jobs:
         pwd
         mvn clean package
 
-  deploy:
-    needs: build
+    - name: Copy files with SSH
+      uses: easingthemes/ssh-deploy@main
 
-    env:
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      ARGS: "-rlgoDzvc --delete"
-      SOURCE: "target"
-      REMOTE_HOST: "157.230.84.81"
-      REMOTE_USER: "root"
-      TARGET: "/root/aplicacao"
+    - name: Give execute permission to post-deploy.sh
+      run: chmod +x .github/scripts/post-deploy.sh
 
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Copy files with SSH
-        uses: easingthemes/ssh-deploy@main
-
-      - name: Give execute permission to post-deploy.sh
-        run: chmod +x .github/scripts/post-deploy.sh
-
-      - name: Execute post-deploy script
-        run: |
-          .github/scripts/post-deploy.sh
+    - name: Execute post-deploy script
+      run: |
+        .github/scripts/post-deploy.sh

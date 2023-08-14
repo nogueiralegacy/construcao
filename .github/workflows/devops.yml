@@ -20,6 +20,12 @@ jobs:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      ARGS: "-tgoDzvO --delete"
+      SOURCE: "construcao/target/construcao-1.0.jar"
+      REMOTE_HOST: "157.230.84.81"
+      REMOTE_USER: "root"
+      TARGET: "/aplicacao"
 
     steps:
     - uses: actions/checkout@v3
@@ -31,3 +37,19 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean package
+
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Copy files with SSH
+        uses: easingthemes/ssh-deploy@main
+
+      - name: Give execute permission to post-deploy.sh
+        run: chmod +x .github/scripts/post-deploy.sh
+
+      - name: Execute post-deploy script
+        run: |
+          .github/scripts/post-deploy.sh

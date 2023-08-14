@@ -1,5 +1,5 @@
 #!/bin/bash
-export SSH_PRIVATE_KEY=${{ secrets.SSH_PRIVATE_KEY }}
+
 # Criação de um arquivo temporário para armazenar a chave privada
 echo $SSH_PRIVATE_KEY > key.pem
 chmod 400 key.pem

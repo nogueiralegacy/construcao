@@ -1,0 +1,48 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      ARGS: "-tgoDzvO --delete"
+      SOURCE: "construcao/target/construcao-1.0.jar"
+      REMOTE_HOST: "157.230.84.81"
+      REMOTE_USER: "root"
+      TARGET: "/aplicacao"
+
+    steps:
+    - name: Checkout files
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    - name: Generated JAR file
+      run: mvn clean package
+
+    - name: Copy files with SSH
+      uses: easingthemes/ssh-deploy@main
+
+    - name: Give execute permission to post-deploy.sh
+      run: chmod +x .github/scripts/post-deploy.sh
+
+    - name: Execute post-deploy script
+      run: |
+        .github/scripts/post-deploy.sh
+

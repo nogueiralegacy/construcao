@@ -5,7 +5,7 @@ echo $SSH_PRIVATE_KEY > id_rsa
 chmod 400 id_rsa
 
 # Início da conexão SSH e execução do comando para iniciar o JAR
-ssh -i id_rsa root@157.230.84.81 "nohup java -jar /root/aplicacao/target/construcao-1.0.jar > output.log 2>&1 &"
+ssh -i id_rsa -o StrictHostKeyChecking=no root@157.230.84.81 "nohup java -jar /root/aplicacao/target/construcao-1.0.jar > output.log 2>&1 &"
 
 # Remoção do arquivo temporário
 rm id_rsa

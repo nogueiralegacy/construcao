@@ -31,27 +31,22 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: | 
-        mvn clean package
-        target/construcao-1.0.jar > construcao-1.0.jar
+      run: mvn clean package
 
   deploy:
     needs: build
 
     env:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      ARGS: "-tgoDzvO --delete"
-      SOURCE: "target/construcao-1.0.jar"
+      ARGS: "-rlgoDzvc --delete"
+      SOURCE: "target/"
       REMOTE_HOST: "157.230.84.81"
       REMOTE_USER: "root"
-      TARGET: "/aplicacao"
+      TARGET: "/root/aplicacao"
 
     runs-on: ubuntu-latest
 
     steps:
-      - name: List files in source directory
-        run: ls
-
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
 

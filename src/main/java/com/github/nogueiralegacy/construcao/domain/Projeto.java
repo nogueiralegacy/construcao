@@ -8,6 +8,7 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -26,7 +27,7 @@ public class Projeto {
     @JoinColumn(nullable = false, name = "id_criador")
     private Usuario criador;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "projeto_participante",
             joinColumns = @JoinColumn(name = "id_projeto"),
@@ -35,7 +36,7 @@ public class Projeto {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Usuario> participantes = new HashSet<>();
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_projeto")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Set<Etapa> etapas = new HashSet<>();
@@ -61,5 +62,20 @@ public class Projeto {
 
     public void removeEtapa(Etapa etapa) {
         etapas.remove(etapa);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Projeto projeto = (Projeto) o;
+
+        return Objects.equals(nome, projeto.nome);
+    }
+
+    @Override
+    public int hashCode() {
+        return nome != null ? nome.hashCode() : 0;
     }
 }

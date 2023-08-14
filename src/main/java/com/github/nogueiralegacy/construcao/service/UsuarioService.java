@@ -79,4 +79,8 @@ public class UsuarioService {
         }
         return usuarioRepository.existsByEmail(email);
     }
+
+    public Iterable<Usuario> findAll() {
+        return usuarioRepository.findAll();
+    }
 }

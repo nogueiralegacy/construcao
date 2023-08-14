@@ -1,5 +1,6 @@
 package com.github.nogueiralegacy.construcao.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Setter;
@@ -13,6 +14,7 @@ public class Usuario {
     private long id;
     @Column(unique = true, nullable = false)
     private String nickname;
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
     @Column(nullable = false)

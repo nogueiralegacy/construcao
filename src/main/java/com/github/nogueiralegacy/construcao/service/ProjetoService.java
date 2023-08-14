@@ -43,4 +43,8 @@ public class ProjetoService {
     private boolean isProjetoValido(ProjetoDTO projetoDTO) {
         return projetoDTO != null && projetoDTO.nome() != null && projetoDTO.criadorNickname() != null;
     }
+
+    public Iterable<Projeto> findAll() {
+        return projetoRepository.findAll();
+    }
 }

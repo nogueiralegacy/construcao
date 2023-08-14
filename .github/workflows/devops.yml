@@ -47,6 +47,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: List files in source directory
+        run: ls -la ${{ env.SOURCE }}
+
       - name: Copy files with SSH
         uses: easingthemes/ssh-deploy@main
 

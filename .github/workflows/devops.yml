@@ -31,7 +31,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: mvn clean package
+      run: |
+        pwd
+        mvn clean package
 
   deploy:
     needs: build
@@ -39,7 +41,7 @@ jobs:
     env:
       SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       ARGS: "-rlgoDzvc --delete"
-      SOURCE: "./target/"
+      SOURCE: "target/"
       REMOTE_HOST: "157.230.84.81"
       REMOTE_USER: "root"
       TARGET: "/root/aplicacao"

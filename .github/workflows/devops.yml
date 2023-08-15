@@ -22,12 +22,6 @@ jobs:
       DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
       DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
 
-      SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-      ARGS: "-rlgoDzvc --delete"
-      SOURCE: "target"
-      REMOTE_HOST: "157.230.84.81"
-      REMOTE_USER: "root"
-      TARGET: "/root/aplicacao"
 
     steps:
     - uses: actions/checkout@v3
@@ -44,6 +38,14 @@ jobs:
 
     - name: Copy files with SSH
       uses: easingthemes/ssh-deploy@main
+
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-rlgoDzvc --delete"
+        SOURCE: "target"
+        REMOTE_HOST: "157.230.84.81"
+        REMOTE_USER: "root"
+        TARGET: "/root/aplicacao"
 
     - name: Execute post-deploy script
       run: |

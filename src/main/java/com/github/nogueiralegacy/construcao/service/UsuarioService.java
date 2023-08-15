@@ -3,7 +3,7 @@ package com.github.nogueiralegacy.construcao.service;
 import com.github.nogueiralegacy.construcao.banco.BCryptHasher;
 import com.github.nogueiralegacy.construcao.domain.Usuario;
 import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
-import com.github.nogueiralegacy.construcao.utils.dto.RegisterUsuarioDTO;
+import com.github.nogueiralegacy.construcao.utils.dto.UsuarioDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -43,7 +43,7 @@ public class UsuarioService {
         return usuarios;
     }
 
-    public void saveUsuario(RegisterUsuarioDTO usuarioDTO) throws IllegalArgumentException {
+    public void saveUsuario(UsuarioDTO usuarioDTO) throws IllegalArgumentException {
         if (!isUsuarioValido(usuarioDTO)) {
             throw new IllegalArgumentException("Formato de usuario inválido, os campos 'nickname', 'password', 'nome', 'email' e 'role' são obrigatórios");
         }
@@ -62,7 +62,7 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 
-    private boolean isUsuarioValido(RegisterUsuarioDTO usuarioDTO) {
+    private boolean isUsuarioValido(UsuarioDTO usuarioDTO) {
         return usuarioDTO != null && usuarioDTO.nickname() != null && usuarioDTO.password() != null && usuarioDTO.nome() != null && usuarioDTO.email() != null && usuarioDTO.role() != null;
     }
 

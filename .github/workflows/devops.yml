@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
-      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+      DATABASE_URL: ${{ secrets.URL_DATABASE }}
+      DATABASE_USERNAME: ${{ secrets.USERNAME_DATABASE }}
+      DATABASE_PASSWORD: ${{ secrets.PASSWORD_DATABASE }}
 
 
     steps:

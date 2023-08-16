@@ -1,0 +1,39 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+
+    runs-on: ubuntu-latest
+
+    env:
+      URL_DATABASE: ${{ secrets.URL_DATABASE }}
+      USERNAME_DATABASE: ${{ secrets.USERNAME_DATABASE }}
+      PASSWORD_DATABASE: ${{ secrets.PASSWORD_DATABASE }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+
+      - name: Build with Maven and make tests
+        run: mvn clean package
+
+      - name: Deploy on main branch
+        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 400 key.pem
+          ssh -i key.pem -o StrictHostKeyChecking=no root@157.230.84.81 'URL_DATABASE=${{ secrets.URL_DATABASE }} USERNAME_DATABASE=${{ secrets.USERNAME_DATABASE }} PASSWORD_DATABASE=${{ secrets.PASSWORD_DATABASE }} source /root/post-deploy.sh'
+          rm key.pem

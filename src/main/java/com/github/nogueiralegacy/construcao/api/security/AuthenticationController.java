@@ -37,7 +37,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody UsuarioDTO usuarioDTO) {
+    public ResponseEntity<String> register(@RequestBody UsuarioDTO usuarioDTO) {
         try{
             usuarioService.saveUsuario(usuarioDTO);
             return ResponseEntity.ok("Usuário registrado com sucesso!");

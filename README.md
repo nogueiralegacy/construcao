@@ -13,6 +13,12 @@ Inspriração [Trello](trello.com)
 - JWT
 - DevOps: Digital Ocena e GitHub Actions
 
+## Realizar testes unitários
+ Na raiz do projeto execute o comando `mvn test`
+
+## Testar API localmente
+Para testar a api localmente entre na branch docs e siga as instruções do README.md
+
 ## Testar API na nuvem
 *Até a presente data (16/08/2023) a aplicação está funcionando na nuvem utilizando os serviços da Digital Ocean*.
 

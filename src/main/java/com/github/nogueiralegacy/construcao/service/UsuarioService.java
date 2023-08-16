@@ -28,7 +28,7 @@ public class UsuarioService {
         if (usuario.isPresent()) {
             return usuario.get();
         }
-        throw new IllegalArgumentException("Usuario não encotrado " + nickname);
+        throw new IllegalArgumentException("Usuario não encotrado. Nickname: " + nickname);
     }
 
     public Set<Usuario> findByNicknames(String[] nicknames) throws IllegalArgumentException {
@@ -66,14 +66,14 @@ public class UsuarioService {
         return usuarioDTO != null && usuarioDTO.nickname() != null && usuarioDTO.password() != null && usuarioDTO.nome() != null && usuarioDTO.email() != null && usuarioDTO.role() != null;
     }
 
-    public boolean usuarioExistsByNickname(String nickname) {
+    public boolean usuarioExistsByNickname(String nickname) throws IllegalArgumentException {
         if (nickname == null) {
             throw new IllegalArgumentException("O parametro 'nickname' não pode ser nulo");
         }
         return usuarioRepository.existsByNickname(nickname);
     }
 
-    public boolean usuarioExistsByEmail(String email) {
+    public boolean usuarioExistsByEmail(String email) throws IllegalArgumentException{
         if (email == null) {
             throw new IllegalArgumentException("O parametro 'email' não pode ser nulo");
         }

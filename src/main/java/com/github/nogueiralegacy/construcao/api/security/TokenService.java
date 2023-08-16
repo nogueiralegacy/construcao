@@ -1,7 +1,6 @@
 package com.github.nogueiralegacy.construcao.api.security;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
@@ -48,8 +47,23 @@ public class TokenService {
           }
     }
 
+    /**
+     * Fornece o instante de expiração do token no horário de Greenwich
+     *
+     * @return Instante de expiração do token no horário de Greenwich
+     */
     private Instant getExpirantionDate() {
         return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
                 .toInstant(ZoneOffset.of("-03:00"));
+    }
+
+    /**
+     * Fornecer o tempo de expiração do token no horário de Brasília
+     *
+     * @return Instante de expiração do token no horário de Brasília
+     */
+    public Instant getTempoDeExpiracao() {
+        return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
+                .toInstant(ZoneOffset.of("-00:00"));
     }
 }

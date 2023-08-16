@@ -11,4 +11,6 @@ public interface ProjetoRepository extends CrudRepository<Projeto, Long> {
 
     @Query("SELECT p.participantes FROM Projeto p WHERE p.nome = :nomeProjeto")
     Iterable<Usuario> findParticipantesByNomeProjeto(@Param("nomeProjeto") String nomeProjeto);
+
+    boolean existsByNome(String nome);
 }

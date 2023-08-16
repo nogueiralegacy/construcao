@@ -8,6 +8,7 @@ import com.github.nogueiralegacy.construcao.utils.dto.ProjetoDTO;
 import org.springframework.stereotype.Service;
 
 import java.time.format.DateTimeParseException;
+import java.util.Optional;
 
 @Service
 public class ProjetoService {
@@ -22,6 +23,10 @@ public class ProjetoService {
     public void saveProjeto(ProjetoDTO projetoDTO) throws IllegalArgumentException {
         if (!isProjetoValido(projetoDTO)) {
             throw new IllegalArgumentException("Formato de projeto inválido, os campos 'nome' e 'criadorNickname' são obrigatórios");
+        }
+
+        if (projetoExistsByNome(projetoDTO.nome())) {
+            throw new IllegalArgumentException("Já existe um projeto com esse nome");
         }
 
         String projetoNome = projetoDTO.nome();
@@ -46,5 +51,37 @@ public class ProjetoService {
 
     public Iterable<Projeto> findAll() {
         return projetoRepository.findAll();
+    }
+
+    public  boolean projetoExistsByNome(String nome) {
+        if (nome == null) {
+            throw new IllegalArgumentException("O parametro 'nome' não pode ser nulo");
+        }
+
+        return projetoRepository.existsByNome(nome);
+    }
+
+    public void addParticipante(Long idProjeto, String nickname) throws IllegalArgumentException {
+        Projeto projeto = findById(idProjeto);
+        Usuario participante = usuarioService.findByNickname(nickname);
+
+        projeto.addParticipante(participante);
+
+        projetoRepository.save(projeto);
+    }
+
+    private Projeto findById(Long idProjeto) throws IllegalArgumentException {
+        if (idProjeto == null) {
+            throw new IllegalArgumentException("O parametro 'id_projeto' não pode ser nulo");
+        }
+
+        Optional<Projeto> projeto = projetoRepository.findById(idProjeto);
+
+        if (projeto.isPresent()) {
+            return projeto.get();
+        }
+
+        throw new IllegalArgumentException("Projeto não encotrado. Id: " + idProjeto);
+
     }
 }

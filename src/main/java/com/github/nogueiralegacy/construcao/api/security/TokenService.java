@@ -64,6 +64,6 @@ public class TokenService {
      */
     public String getTempoDeExpiracao() {
         return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
-                .toString();
+                .minusHours(3).toString();
     }
 }

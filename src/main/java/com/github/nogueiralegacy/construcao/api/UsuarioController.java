@@ -1,7 +1,6 @@
 package com.github.nogueiralegacy.construcao.api;
 
 import com.github.nogueiralegacy.construcao.domain.Usuario;
-import com.github.nogueiralegacy.construcao.banco.repository.UsuarioRepository;
 import com.github.nogueiralegacy.construcao.service.UsuarioService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

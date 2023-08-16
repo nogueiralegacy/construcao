@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "3e3bdbf1-3bd5-456d-a19a-f190c6a54c9f",
+		"name": "construcao",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24823750"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zdHJ1Y2FvIiwic3ViIjoiZGFuaWJveSIsImV4cCI6MTY5MDQxOTE0MX0.2QGxGbmg8PH3WAEfHCpeXP6Jrjvez-rgX8ZBTqYM7XM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nickname\": \"dudinha\",\r\n    \"password\": \"duda123\",\r\n    \"nome\": \"Maria Eduarda\",\r\n    \"email\": \"maria@gmail.com\",\r\n    \"role\": \"USER\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/auth/register",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"daniboy\",\r\n    \"password\": \"daniel123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/auth/login",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUsuarios",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zdHJ1Y2FvIiwic3ViIjoiZGFuaWJveSIsImV4cCI6MTY5MDQxOTE0MX0.2QGxGbmg8PH3WAEfHCpeXP6Jrjvez-rgX8ZBTqYM7XM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/usuario",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"usuario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getProjetoAll",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zdHJ1Y2FvIiwic3ViIjoiZGFuaWJveSIsImV4cCI6MTY5MDQxODYyNn0.GxYyaY-pngYcpUtVOajTgZYlZTpI3UToJUoyCdKuLAI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{server}}/projeto",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"projeto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addProjeto",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJjb25zdHJ1Y2FvIiwic3ViIjoiZGFuaWJveSIsImV4cCI6MTY5MDQ3OTM5OX0.0UsbrJQ0_F8u4PJyE3jRJSjTF9UDXHIwBmQuEMSRNbY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Manhattan\",\r\n    \"descricao\": \"Projeto ultra secreto do governo americano para desenvolver armas de destruição em massa, como a bomba atômica e a bomba de hidrogênio\",\r\n    \"dataCriacao\": \"2023-07-02 17:34:56\",\r\n    \"criadorNickname\": \"naldobenny\",\r\n    \"participantesNicknames\": [\"naldobenny\", \"daniboy\", \"lucaslucco\", \"neymarjr\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{server}}/projeto",
+					"host": [
+						"{{server}}"
+					],
+					"path": [
+						"projeto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addParticipante",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}

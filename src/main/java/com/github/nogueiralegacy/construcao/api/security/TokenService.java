@@ -64,6 +64,6 @@ public class TokenService {
      */
     public Instant getTempoDeExpiracao() {
         return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
-                .toInstant(ZoneOffset.ofHours(+3));
+                .toInstant(ZoneOffset.ofHours(0));
     }
 }

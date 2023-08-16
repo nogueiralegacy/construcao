@@ -3,7 +3,7 @@ package com.github.nogueiralegacy.construcao.api.security;
 import com.github.nogueiralegacy.construcao.service.UsuarioService;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginDTO;
 import com.github.nogueiralegacy.construcao.utils.dto.LoginResponseDTO;
-import com.github.nogueiralegacy.construcao.utils.dto.RegisterUsuarioDTO;
+import com.github.nogueiralegacy.construcao.utils.dto.UsuarioDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,14 +31,15 @@ public class AuthenticationController {
         var authentication = this.authenticationManager.authenticate(usernamePassword);
 
         var token = tokenService.generateToken((Login) authentication.getPrincipal());
+        var tempoDeExpiracao = tokenService.getTempoDeExpiracao();
 
-        return ResponseEntity.ok(new LoginResponseDTO(token));
+        return ResponseEntity.ok(new LoginResponseDTO(token, tempoDeExpiracao));
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterUsuarioDTO registerUsuarioDTO) {
+    public ResponseEntity register(@RequestBody UsuarioDTO usuarioDTO) {
         try{
-            usuarioService.saveUsuario(registerUsuarioDTO);
+            usuarioService.saveUsuario(usuarioDTO);
             return ResponseEntity.ok("Usuário registrado com sucesso!");
 
         } catch(IllegalArgumentException e) {

@@ -1,12 +1,15 @@
-name: Java CI with Maven
+name: CD
 
 on:
   push:
     branches:
+      - '*'
+  pull_request:
+    branches:
       - main
 
 jobs:
-  build:
+  build-and-deploy:
 
     runs-on: ubuntu-latest
 
@@ -15,35 +18,24 @@ jobs:
       USERNAME_DATABASE: ${{ secrets.USERNAME_DATABASE }}
       PASSWORD_DATABASE: ${{ secrets.PASSWORD_DATABASE }}
 
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-    - name: Build with Maven
-      run: |
-        mvn clean package
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
 
-    - name: Copy files with SSH
-      uses: easingthemes/ssh-deploy@main
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rlgoDzvc --delete"
-        SOURCE: "target"
-        REMOTE_HOST: "157.230.84.81"
-        REMOTE_USER: "root"
-        TARGET: "/root/aplicacao"
+      - name: Build with Maven and make tests
+        run: mvn clean package
 
-    - name: Execute post-deploy script
-      run: |
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
-        chmod 400 key.pem
-        ssh -i key.pem -o StrictHostKeyChecking=no root@157.230.84.81 'URL_DATABASE=${{ secrets.URL_DATABASE }} USERNAME_DATABASE=${{ secrets.USERNAME_DATABASE }} PASSWORD_DATABASE=${{ secrets.PASSWORD_DATABASE }} source /root/post-deploy.sh'
-        
-        rm key.pem
+      - name: Deploy on main branch
+        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+          chmod 400 key.pem
+          ssh -i key.pem -o StrictHostKeyChecking=no root@157.230.84.81 'URL_DATABASE=${{ secrets.URL_DATABASE }} USERNAME_DATABASE=${{ secrets.USERNAME_DATABASE }} PASSWORD_DATABASE=${{ secrets.PASSWORD_DATABASE }} source /root/post-deploy.sh'
+          rm key.pem

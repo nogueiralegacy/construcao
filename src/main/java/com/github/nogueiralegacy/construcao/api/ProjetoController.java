@@ -1,7 +1,6 @@
 package com.github.nogueiralegacy.construcao.api;
 
 import com.github.nogueiralegacy.construcao.domain.Projeto;
-import com.github.nogueiralegacy.construcao.banco.repository.ProjetoRepository;
 import com.github.nogueiralegacy.construcao.service.ProjetoService;
 import com.github.nogueiralegacy.construcao.utils.dto.ProjetoDTO;
 import org.springframework.http.ResponseEntity;
@@ -31,5 +30,16 @@ public class ProjetoController {
        }
 
         return ResponseEntity.ok("Projeto criado com sucesso!");
+    }
+
+    @PostMapping("/{id_projeto}/participante/{nickname}")
+    public ResponseEntity<String> addParticipante(@PathVariable("id_projeto") Long idProjeto, @PathVariable("nickname") String nickname) {
+        try {
+            projetoService.addParticipante(idProjeto, nickname);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Erro ao adicionar participante: " + e.getMessage());
+        }
+
+        return ResponseEntity.ok("Participante adicionado com sucesso!");
     }
 }

@@ -54,7 +54,7 @@ public class TokenService {
      */
     private Instant getExpirantionDate() {
         return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
-                .toInstant(ZoneOffset.of("-05:00"));
+                .toInstant(ZoneOffset.of("-03:00"));
     }
 
     /**
@@ -62,8 +62,8 @@ public class TokenService {
      *
      * @return Instante de expiração do token no horário de Brasília
      */
-    public Instant getTempoDeExpiracao() {
+    public String getTempoDeExpiracao() {
         return LocalDateTime.now().plusMinutes(tempoDeExpiracao)
-                .toInstant(ZoneOffset.ofHours(0));
+                .toString();
     }
 }

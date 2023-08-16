@@ -1,12 +1,9 @@
-name: CD
+name: devops
 
 on:
   push:
     branches:
       - '*'
-  pull_request:
-    branches:
-      - main
 
 jobs:
   build-and-deploy:
@@ -33,7 +30,7 @@ jobs:
         run: mvn clean package
 
       - name: Deploy on main branch
-        if: github.ref == 'refs/heads/main' && github.event_name == 'pull_request'
+        if: github.ref == 'refs/heads/main'
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
           chmod 400 key.pem

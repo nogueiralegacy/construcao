@@ -63,8 +63,8 @@ public class TokenService {
      * @return Instante de expiração do token no horário de Brasília
      */
     public String getTempoDeExpiracao() {
-        LocalDateTime tempoAjustado =  LocalDateTime.now().plusMinutes(tempoDeExpiracao);
+        return LocalDateTime.now().plusMinutes(tempoDeExpiracao).toString();
 
-        return tempoAjustado.minusHours(3).toString();
+
     }
 }
